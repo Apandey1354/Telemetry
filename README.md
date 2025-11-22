@@ -1,106 +1,60 @@
-# Mechanical Karma React Dashboard
+# Mechanical Karma Predictor
 
-A modern React dashboard for visualizing mechanical karma (failure risk) predictions from race telemetry data.
+End-to-end project for computing per-lap “Mechanical Karma” risk scores from race telemetry and visualizing them on a React dashboard powered by Firebase Realtime Database.
 
-## Features
-
-- 📤 **File Upload**: Upload telemetry CSV files for processing
-- 🚗 **Vehicle Selection**: Browse and select from available vehicles
-- 📊 **Interactive Charts**: Plotly-powered visualizations of telemetry trends
-- ⚡ **Karma Scores**: Real-time component-level mechanical karma tracking
-- ▶️ **Replay Controls**: Step through laps to see how karma evolves
-- 📈 **Metrics Display**: Key statistics (laps, speed, DNF status)
-
-## Setup
-
-### Prerequisites
-
-- Node.js 18+ and npm
-- Python backend running (see backend setup)
-
-### Installation
-
-```bash
-cd frontend
-npm install
-```
-
-### Development
-
-Start the development server:
-
-```bash
-npm run dev
-```
-
-The app will be available at `http://localhost:3000`
-
-Make sure the Flask API backend is running on `http://localhost:5000` (see `backend/api.py`)
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-The built files will be in the `dist/` directory.
-
-## Usage
-
-1. **Start the backend API**:
-   ```bash
-   cd backend
-   python api.py
-   ```
-
-2. **Start the React app**:
-   ```bash
-   cd frontend
-   npm run dev
-   ```
-
-3. **Upload a telemetry file** using the upload component in the sidebar
-
-4. **Select a vehicle** from the dropdown
-
-5. **View visualizations** and use replay controls to step through laps
-
-## Project Structure
+## Repository Structure
 
 ```
-frontend/
-├── src/
-│   ├── components/          # React components
-│   │   ├── FileUpload.jsx
-│   │   ├── VehicleSelector.jsx
-│   │   ├── MetricsDisplay.jsx
-│   │   ├── TimeSeriesChart.jsx
-│   │   ├── KarmaDisplay.jsx
-│   │   └── ReplayControls.jsx
-│   ├── api.js              # API client
-│   ├── App.jsx             # Main app component
-│   └── main.jsx            # Entry point
-├── index.html
-├── vite.config.js
-└── package.json
+Hack The Track/
+  ├── backend/           # Python data + model pipeline
+  ├── frontend/          # React dashboard (create-react-app scaffold TBD)
+  └── data/
+      ├── raw/           # Drop source CSVs here
+      ├── interim/       # Lap-tagged telemetry (auto-generated)
+      └── processed/     # Per-lap features & scored datasets
 ```
 
-## API Endpoints
+## Phase Overview
 
-The app communicates with the Flask backend at `/api`:
+1. **Phase 0 – Environment**
+   - Install Python 3.10+, Node.js 18+, npm.
+   - `pip install -r backend/requirements.txt` inside a virtual environment.
+   - Initialize Firebase project and download `serviceAccountKey.json` into `secrets/`.
+   - Create React app via `npx create-react-app frontend/karma-dashboard` (pending).
 
-- `POST /api/upload` - Upload telemetry file
-- `POST /api/process` - Get processed vehicle data
-- `GET /api/vehicle/<id>` - Get specific vehicle data
-- `GET /api/karma/<id>` - Get karma scores for vehicle
-- `GET /api/karma/<id>/lap/<lap>` - Get karma up to specific lap
+2. **Phase 1 – Data Preparation**
+   - Place telemetry + metadata CSVs inside `data/raw/`.
+   - `cd backend && python -m src.main ingest` to build per-lap features.
 
-## Technologies
+3. **Phase 2 – Modeling**
+   - `python -m src.main train` trains the configured model (Random Forest by default).
+   - `python -m src.main infer` scores laps and writes `data/processed/per_lap_with_karma.parquet`.
 
-- **React 18** - UI framework
-- **Vite** - Build tool and dev server
-- **Plotly.js** - Interactive charts
-- **Axios** - HTTP client
-- **CSS3** - Styling
+4. **Phase 3 – Firebase Integration**
+   - `python -m src.main push-firebase --service-account ../secrets/serviceAccountKey.json --db-url https://<id>.firebaseio.com`.
+   - Data is written beneath `/karma/{vehicle_id}`.
 
+5. **Phase 4 – Frontend Dashboard**
+   - React app subscribes to `/karma` node and renders real-time cards/bars.
+   - Frontend implementation will live under `frontend/`.
+
+## Data Files
+
+Drop the following in `data/raw/` (filenames can be overridden via env vars):
+
+- `R1_vir_telemetry_data.csv`
+- `vir_lap_start_R1.csv`
+- `vir_lap_end_R1.csv`
+- `03_Provisional Results_Race 1_Anonymized.CSV`
+- `weather_vir_R1.csv` (optional)
+
+## Next Steps
+
+1. Add the CSVs (user action).
+2. Run the ingestion command and inspect generated parquet files.
+3. Tune model hyperparameters or augment features as needed.
+4. Scaffold the React dashboard and connect it to Firebase.
+5. Iterate on alerting/visualization features (trend charts, component-level karma, etc.).
+
+For detailed backend usage, see `backend/README.md`. Frontend docs will be added once the dashboard scaffold is generated.
 
