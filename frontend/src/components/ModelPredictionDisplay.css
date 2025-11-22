@@ -1,0 +1,382 @@
+.model-prediction-display {
+  width: 100%;
+}
+
+.prediction-metric-card {
+  background: linear-gradient(135deg, rgba(255, 51, 88, 0.2), rgba(0, 255, 198, 0.15));
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 2rem;
+  border-radius: 24px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.prediction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.prediction-header h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.risk-badge {
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.prediction-value {
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 1rem 0;
+  text-shadow: 0 0 30px currentColor;
+  line-height: 1;
+}
+
+.prediction-subtitle {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+}
+
+.prediction-progress-bar {
+  width: 100%;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 1.5rem;
+  position: relative;
+}
+
+.prediction-progress-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+  border-radius: 999px;
+  box-shadow: 0 0 20px currentColor;
+  position: relative;
+}
+
+.prediction-chart {
+  background: rgba(10, 13, 20, 0.9);
+  padding: 1.5rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 16px 45px rgba(5, 7, 11, 0.55);
+  margin-bottom: 1rem;
+}
+
+.prediction-info {
+  background: rgba(15, 17, 23, 0.6);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border-left: 4px solid rgba(0, 255, 198, 0.6);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-top: 1.5rem;
+}
+
+.prediction-info strong {
+  color: #fff;
+}
+
+.component-risk-alert {
+  background: linear-gradient(135deg, rgba(255, 128, 56, 0.3), rgba(255, 51, 88, 0.3));
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 128, 56, 0.5);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: 
+    0 12px 40px rgba(255, 51, 88, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.alert-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.alert-icon {
+  font-size: 1.75rem;
+}
+
+.alert-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.component-name {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 1.1rem;
+}
+
+.component-prob {
+  font-weight: 600;
+  color: #ff3358;
+}
+
+.component-risks-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.component-risks-header h3 {
+  font-size: 1.75rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff, rgba(0, 255, 198, 0.9));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.component-risks-header .subtitle {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+}
+
+.component-probabilities-main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.component-risk-card {
+  background: rgba(15, 17, 23, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  padding: 1.75rem;
+  border-radius: 20px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.component-risk-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.component-risk-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset,
+    0 0 80px rgba(255, 51, 88, 0.2);
+}
+
+.component-risk-card.risk-high {
+  border-color: rgba(255, 51, 88, 0.5);
+  background: linear-gradient(135deg, rgba(255, 51, 88, 0.15), rgba(15, 17, 23, 0.7));
+}
+
+.component-risk-card.risk-high::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 51, 88, 0.8), transparent);
+  opacity: 1;
+}
+
+.component-risk-card.risk-medium {
+  border-color: rgba(255, 128, 56, 0.5);
+  background: linear-gradient(135deg, rgba(255, 128, 56, 0.15), rgba(15, 17, 23, 0.7));
+}
+
+.component-risk-card.risk-medium::before {
+  background: linear-gradient(90deg, transparent, rgba(255, 128, 56, 0.8), transparent);
+  opacity: 1;
+}
+
+.component-risk-card.risk-low {
+  border-color: rgba(0, 255, 198, 0.5);
+  background: linear-gradient(135deg, rgba(0, 255, 198, 0.15), rgba(15, 17, 23, 0.7));
+}
+
+.component-risk-card.risk-low::before {
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 198, 0.8), transparent);
+  opacity: 1;
+}
+
+.component-risk-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.component-icon {
+  font-size: 2.5rem;
+  opacity: 0.9;
+}
+
+.component-title {
+  flex: 1;
+}
+
+.component-title h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+.risk-badge-small {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid currentColor;
+}
+
+.risk-badge-small.risk-high {
+  background: rgba(255, 51, 88, 0.2);
+  color: #ff3358;
+  border-color: rgba(255, 51, 88, 0.5);
+}
+
+.risk-badge-small.risk-medium {
+  background: rgba(255, 128, 56, 0.2);
+  color: #ff8038;
+  border-color: rgba(255, 128, 56, 0.5);
+}
+
+.risk-badge-small.risk-low {
+  background: rgba(0, 255, 198, 0.2);
+  color: #00ffc6;
+  border-color: rgba(0, 255, 198, 0.5);
+}
+
+.component-risk-value {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 1.25rem 0;
+  text-align: center;
+  text-shadow: 0 0 30px currentColor;
+  line-height: 1;
+}
+
+.component-risk-progress {
+  width: 100%;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 1.25rem 0;
+  position: relative;
+}
+
+.component-risk-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+  border-radius: 999px;
+  box-shadow: 0 0 20px currentColor;
+  position: relative;
+}
+
+.component-risk-lap {
+  text-align: center;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.75rem;
+  font-weight: 500;
+}
+
+.component-trends-chart {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(10, 13, 20, 0.9);
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 16px 45px rgba(5, 7, 11, 0.55);
+}
+
+.component-trends-chart h4 {
+  margin: 0 0 1.5rem 0;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.prediction-empty {
+  padding: 3rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+  background: rgba(15, 17, 23, 0.5);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .prediction-value {
+    font-size: 3rem;
+  }
+
+  .prediction-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .component-probabilities-main {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .component-risk-value {
+    font-size: 2.5rem;
+  }
+
+  .alert-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

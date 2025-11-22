@@ -1,0 +1,118 @@
+.file-upload {
+  margin-bottom: 0;
+}
+
+.upload-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.file-input {
+  padding: 0.75rem 1rem;
+  border: 2px solid rgba(255, 51, 88, 0.4);
+  border-radius: 14px;
+  background: rgba(15, 17, 23, 0.9);
+  color: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.file-input:hover {
+  border-color: rgba(255, 51, 88, 0.7);
+  background: rgba(20, 23, 30, 0.95);
+  box-shadow: 
+    0 4px 16px rgba(255, 51, 88, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.file-input:focus {
+  outline: none;
+  border-color: rgba(0, 255, 198, 0.8);
+  background: rgba(20, 23, 30, 0.95);
+  box-shadow: 
+    0 0 0 4px rgba(0, 255, 198, 0.2),
+    0 4px 16px rgba(255, 51, 88, 0.3);
+}
+
+.file-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.upload-button {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #ff3358, #ff8038);
+  color: white;
+  border: 1px solid rgba(255, 51, 88, 0.5);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 
+    0 10px 25px rgba(255, 51, 88, 0.4),
+    0 0 20px rgba(255, 51, 88, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.upload-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 30px rgba(255, 51, 88, 0.5),
+    0 0 30px rgba(255, 51, 88, 0.3);
+}
+
+.upload-button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.upload-button:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.upload-message {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  border: 1px solid;
+}
+
+.upload-message.success {
+  background: rgba(0, 255, 198, 0.1);
+  color: #00ffc6;
+  border-color: rgba(0, 255, 198, 0.3);
+}
+
+.upload-message.error {
+  background: rgba(255, 51, 88, 0.1);
+  color: #ff3358;
+  border-color: rgba(255, 51, 88, 0.3);
+}
+
+.upload-hint {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}

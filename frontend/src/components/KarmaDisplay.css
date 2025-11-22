@@ -1,0 +1,161 @@
+.karma-display {
+  width: 100%;
+}
+
+.karma-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.karma-metric-card {
+  background: rgba(15, 17, 23, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.karma-metric-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(0, 255, 198, 0.6), 
+    transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.karma-metric-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 255, 198, 0.3);
+  box-shadow: 
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(0, 255, 198, 0.2) inset,
+    0 0 60px rgba(0, 255, 198, 0.15);
+}
+
+.karma-metric-card:hover::before {
+  opacity: 1;
+}
+
+.karma-metric-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.karma-metric-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00ffc6, #1de5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0.5rem 0;
+  line-height: 1.2;
+}
+
+.karma-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 1rem;
+  position: relative;
+}
+
+.karma-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffc6, #1de5ff);
+  transition: width 0.5s ease;
+  border-radius: 999px;
+  box-shadow: 0 0 20px rgba(0, 255, 198, 0.5);
+  position: relative;
+}
+
+.karma-progress-fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.trend-indicator {
+  font-size: 1rem;
+  margin-left: 0.25rem;
+  font-weight: 700;
+}
+
+.trend-up {
+  color: #ff3358;
+}
+
+.trend-down {
+  color: #00ffc6;
+}
+
+.karma-chart {
+  background: rgba(10, 13, 20, 0.9);
+  padding: 1.5rem;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 16px 45px rgba(5, 7, 11, 0.55);
+}
+
+.karma-empty {
+  padding: 3rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+  background: rgba(15, 17, 23, 0.5);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .karma-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .karma-metric-card {
+    padding: 1.25rem;
+  }
+
+  .karma-metric-value {
+    font-size: 2rem;
+  }
+}
